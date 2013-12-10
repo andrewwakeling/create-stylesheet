@@ -14,6 +14,20 @@ This module currently supports IE8+ and other modern desktop browsers.
 
 Create a new stylesheet with the specified options.
 
+Example:
+
+``` javascript
+stylesheet.createStyleSheet({
+    css: 'body { background-color: red; }',
+}, function(err, style) {
+    if (err) {
+        // Do your error handling here.
+    } else {
+        // The style was successfully created.
+    }
+}
+```
+
 ### Options
 
 #### options.css
@@ -34,23 +48,17 @@ Default value: `false`
 For awareness of [KB262161](http://support.microsoft.com/kb/262161), if there are a total of 31 or more stylesheets present when invoking createStyle, it will throw an error.
 If you wish to ignore this error for non-IE browsers, set this option to true.
 
-Example:
 
-``` javascript
-stylesheet.createStyleSheet({
-    css: 'body { background-color: red; }',
-}, function(err, style) {
-    if (err) {
-        // Do your error handling here.
-    } else {
-        // The style was successfully created.
-    }
-}
-```
 
 ## removeStyleSheet(style)
 
 Remove the specified stylesheet.
+
+Example:
+
+``` javascript
+stylesheet.removeStyleSheet(document.getElementById('foo'));
+```
 
 ## TODO
 - attributes of the replaced stylesheet can be copied to the new stylesheet

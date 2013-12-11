@@ -44,7 +44,7 @@ stylesheet.insertStyleSheetBefore(document.getElementById('foo'), 'body { backgr
     if (err) {
         // Do your error handling here.
     } else {
-        // The style was successfully created.
+        // The style was successfully inserted.
     }
 }
 ```
@@ -58,11 +58,11 @@ If no node is specified, the new stylesheet will be appended to the head element
 Example:
 
 ``` javascript
-stylesheet.insertStyleSheetBefore(document.getElementById('foo'), 'body { background-color: red; }', function(err, style) {
+stylesheet.replaceStyleSheet(document.getElementById('foo'), 'body { background-color: red; }', function(err, style) {
     if (err) {
         // Do your error handling here.
     } else {
-        // The style was successfully created.
+        // The style was successfully replaced.
     }
 }
 ```

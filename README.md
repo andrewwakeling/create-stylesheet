@@ -7,7 +7,7 @@ Create, replace and remove spreadsheets in most modern desktop browsers. It was 
 Usage
 ==
 In [dist](https://github.com/andrewwakeling/create-stylesheet/tree/master/dist) there exists minified and non-minified versions which support AMD and CommonJS loaders.
-If no loader is used, then the API will be available through a `stylesheet` global. There is also an "unwrapped" distributable which you freedom in how you structure your closure to define a module.
+If no loader is used, then the API will be available through a `stylesheet` global. There is also an "unwrapped" distributable which gives you the freedom in how you structure your closure to define a module.
 
 
 Supported Platforms

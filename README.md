@@ -6,20 +6,25 @@ Create, replace and remove spreadsheets in most modern desktop browsers. It was 
 
 Usage
 ==
-This module currently supports AMD or CommonJS loaders. If no loader is used, the API will be available from the **stylesheet** global.
+In [dist](https://github.com/andrewwakeling/create-stylesheet/tree/master/dist) there exists minified and non-minified versions which support AMD and CommonJS loaders.
+If no loader is used, then the API will be available through a `stylesheet` global.
 
-This module currently supports IE8+ and other modern desktop browsers.
 
-## createStyleSheet(options, callback)
+Supported Platforms
+==
+This module currently supports IE8+ and other modern desktop browsers, however if you find issues on any mobile browsers, please raise an [issue](https://github.com/andrewwakeling/create-stylesheet/issues/new).
 
-Create a new stylesheet with the specified options.
+API
+==
+
+## appendStyleSheet(css, callback)
+
+Create a new stylesheet and append it to the head element.
 
 Example:
 
 ``` javascript
-stylesheet.createStyleSheet({
-    css: 'body { background-color: red; }',
-}, function(err, style) {
+stylesheet.appendStyleSheet('body { background-color: red; }', function(err, style) {
     if (err) {
         // Do your error handling here.
     } else {
@@ -28,27 +33,39 @@ stylesheet.createStyleSheet({
 }
 ```
 
-### Options
+## insertStyleSheetBefore(node, css, callback)
 
-#### options.css
-Type: `String`
+Create a new stylesheet and insert it before the specified node. If no node is specified, the new stylesheet will be appended to the head element.
 
-The CSS text which will be used to create a new stylesheet.
+Example:
 
-#### options.replace
-Type: `DOMElement`
-Default value: undefined
+``` javascript
+stylesheet.insertStyleSheetBefore(document.getElementById('foo'), 'body { background-color: red; }', function(err, style) {
+    if (err) {
+        // Do your error handling here.
+    } else {
+        // The style was successfully created.
+    }
+}
+```
 
-If specified, the new stylesheet will replace the specified stylesheet.
+## replaceStyleSheet(node, css, callback)
 
-#### options.ignoreKB262161
-Type: `Boolean`
-Default value: `false`
+Create a new stylesheet and replace the specified node. Replacement occurs by inserting the new stylesheet after the specified node and then deleting the specified node.
+**Note:** This means that any attributes on the specified node will be lost.
+If no node is specified, the new stylesheet will be appended to the head element.
 
-For awareness of [KB262161](http://support.microsoft.com/kb/262161), if there are a total of 31 or more stylesheets present when invoking createStyle, it will throw an error.
-If you wish to ignore this error for non-IE browsers, set this option to true.
+Example:
 
-
+``` javascript
+stylesheet.insertStyleSheetBefore(document.getElementById('foo'), 'body { background-color: red; }', function(err, style) {
+    if (err) {
+        // Do your error handling here.
+    } else {
+        // The style was successfully created.
+    }
+}
+```
 
 ## removeStyleSheet(style)
 
@@ -60,9 +77,15 @@ Example:
 stylesheet.removeStyleSheet(document.getElementById('foo'));
 ```
 
-## TODO
+## stylesheet.ignoreKB262161
+
+For awareness of [KB262161](http://support.microsoft.com/kb/262161), if 31 or more total stylesheets exist when invoking appendStyleSheet, insertStyleSheetBefore or replaceStyleSheet,
+an error will be thrown in ANY browser. If you really want to disable this error (for non-IE), set this property to true. The default value is false.
+
+
+
+## Upcoming Features
 - attributes of the replaced stylesheet can be copied to the new stylesheet
-- ability to specify a "insert before" target in createStyleSheet
 - tests
 - support this module in bower and component package management/repositories
 

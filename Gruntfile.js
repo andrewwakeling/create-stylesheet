@@ -14,14 +14,14 @@ module.exports = function (grunt) {
                 src: 'create-stylesheet.js',
                 dest: 'dist/create-stylesheet.js',
                 template: 'umd',
-                objectToExport: 'functions',
+                objectToExport: '_stylesheet',
                 globalAlias: 'stylesheet'
             },
             commonjs: {
                 src: 'create-stylesheet.js',
                 dest: 'dist/create-stylesheet.commonjs.js',
                 template: 'unit',
-                objectToExport: 'functions',
+                objectToExport: '_stylesheet',
                 globalAlias: 'stylesheet'
             }
         },

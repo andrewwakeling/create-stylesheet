@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=8"/>
+    <script src="async-0.2.5.js"></script>
+    <script src="../dist/create-stylesheet.min.js"></script>
+    <script>
+        stylesheet.ignoreKB262161 = false; // Toggle this for different results.
+        var TOO_MANY_STYLES = 100;
+        var css = 'body { background-color: grey }';
+        var callbacks = [];
+        var x;
+        for (x = 0; x < TOO_MANY_STYLES; x++) {
+            callbacks.push(async.apply(stylesheet.appendStyleSheet, css));
+        }
+        async.parallel(callbacks, function(err, styles) {
+            if (err) {
+                alert(err);
+            } else {
+                alert('Successfully created ' + styles.length);
+            }
+        });
+    </script>
+</head>
+<body>
+</body>
+</html>

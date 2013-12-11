@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=8"/>
+    <script src="../dist/create-stylesheet.min.js"></script>
+    <script>
+        var whiteCSS = 'body { background-color: white; }';
+        var blackCSS = 'body { background-color: black; }';
+
+        var duration = 1000;
+        var stopped = false;
+        var css = null;
+
+        var intervalId = null;
+        function start(node) {
+            css = css === whiteCSS ? blackCSS : whiteCSS;
+
+            stylesheet.replaceStyleSheet(node, css, function (err, style) {
+                if (err) {
+                    alert(err); // For IE8. I don't like it but this should never happen.
+                } else {
+                    if (!stopped) {
+                        setTimeout(function () {
+                            start(style);
+                        }, duration);
+                    }
+                }
+            });
+        }
+        function stop() {
+            stopped = true;
+        }
+        start();
+    </script>
+</head>
+<body>
+</body>
+</html>

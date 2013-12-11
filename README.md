@@ -7,7 +7,7 @@ Create, replace and remove spreadsheets in most modern desktop browsers. It was 
 Usage
 ==
 In [dist](https://github.com/andrewwakeling/create-stylesheet/tree/master/dist) there exists minified and non-minified versions which support AMD and CommonJS loaders.
-If no loader is used, then the API will be available through a `stylesheet` global.
+If no loader is used, then the API will be available through a `stylesheet` global. There is also an "unwrapped" distributable which you freedom in how you structure your closure to define a module.
 
 
 Supported Platforms
@@ -82,7 +82,11 @@ stylesheet.removeStyleSheet(document.getElementById('foo'));
 For awareness of [KB262161](http://support.microsoft.com/kb/262161), if 31 or more total stylesheets exist when invoking appendStyleSheet, insertStyleSheetBefore or replaceStyleSheet,
 an error will be thrown in ANY browser. If you really want to disable this error (for non-IE), set this property to true. The default value is false.
 
+Example:
 
+``` javascript
+stylesheet.ignoreKB262161 = true;
+```
 
 ## Upcoming Features
 - attributes of the replaced stylesheet can be copied to the new stylesheet

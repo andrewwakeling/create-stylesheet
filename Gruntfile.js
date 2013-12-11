@@ -40,13 +40,25 @@ module.exports = function (grunt) {
                 }
             }
         },
+        copy: {
+            unwrapped: {
+                src: 'create-stylesheet.js',
+                dest: 'dist/create-stylesheet.unwrapped.js'
+            }
+        },
         usebanner: {
             dist: {
                 options: {
                     banner: '<%= banner %>'
                 },
                 files: {
-                    src: ['dist/create-stylesheet.js', 'dist/create-stylesheet.min.js', 'dist/create-stylesheet.commonjs.js', 'dist/create-stylesheet.commonjs.min.js']
+                    src: [
+                        'dist/create-stylesheet.js',
+                        'dist/create-stylesheet.min.js',
+                        'dist/create-stylesheet.commonjs.js',
+                        'dist/create-stylesheet.commonjs.min.js',
+                        'dist/create-stylesheet.unwrapped.js'
+                    ]
                 }
             }
         }
@@ -55,7 +67,8 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-umd');
     grunt.loadNpmTasks('grunt-contrib-uglify');
+    grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-banner');
 
-    grunt.registerTask('default', ['clean', 'umd:umd', 'umd:commonjs', 'uglify:umd', 'uglify:commonjs', 'usebanner:dist']);
+    grunt.registerTask('default', ['clean', 'umd:umd', 'umd:commonjs', 'uglify:umd', 'uglify:commonjs', 'copy:unwrapped', 'usebanner:dist']);
 };

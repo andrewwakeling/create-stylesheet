@@ -51,18 +51,22 @@ stylesheet.insertStyleSheetBefore(document.getElementById('foo'), 'body { backgr
 
 ## replaceStyleSheet(node, css, callback)
 
-Create a new stylesheet and replace the specified node. Replacement occurs by inserting the new stylesheet after the specified node and then deleting the specified node.
-**Note:** This means that any attributes on the specified node will be lost.
-If no node is specified, the new stylesheet will be appended to the head element.
+Create a new stylesheet and replace the specified node. If no node is specified, the new stylesheet will be appended to the head element.
+
+**Note:** This function works by deleting the existing stylesheet and replacing the new stylesheet in its place. This means that any attribute (other than `type`) will **not exist** on the new stylesheet.
+As demonstrated in the example below, this can be solved by setting any attributes after the stylesheet is created.
+If this approach can not work for you, please raise an [issue](https://github.com/andrewwakeling/create-stylesheet/issues/new).
 
 Example:
 
 ``` javascript
-stylesheet.replaceStyleSheet(document.getElementById('foo'), 'body { background-color: red; }', function(err, style) {
+var id = 'foo'
+stylesheet.replaceStyleSheet(document.getElementById(id), 'body { background-color: red; }', function(err, style) {
     if (err) {
         // Do your error handling here.
     } else {
-        // The style was successfully replaced.
+        // The stylesheet was successfully replaced. Set any attributes which may have been lost.
+        style.setAttribute('id', id);
     }
 }
 ```
@@ -88,10 +92,10 @@ Example:
 stylesheet.ignoreKB262161 = true;
 ```
 
-## Upcoming Features
-- attributes of the replaced stylesheet can be copied to the new stylesheet
-- tests
+## Upcoming Plans
 - support this module in bower and component package management/repositories
+- cross-browser unit testing
+- attributes of the replaced stylesheet can be copied to the new stylesheet (Unfortunately this is unlikely to happen soon due to odd behaviour I have witnessed in IE around attributes)
 
 License
 ==
@@ -116,4 +120,3 @@ FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
 COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
 IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-

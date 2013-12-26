@@ -98,7 +98,7 @@ function createStyleSheet(options, callback) {
         }
     });
 }
-var _stylesheet = {
+_stylesheet = {
     appendStyleSheet: function (css, callback) {
         createStyleSheet({
             css: css

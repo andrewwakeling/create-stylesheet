@@ -1,6 +1,6 @@
 {
   "name": "create-stylesheet",
-  "version": "0.2.0",
+  "version": "0.2.2",
   "description": "Cross-browser dynamic stylesheet creation",
   "author": "Andrew Wakeling <andrew.wakeling@gmail.com>",
   "repository": "git://github.com/andrewwakeling/create-stylesheet",

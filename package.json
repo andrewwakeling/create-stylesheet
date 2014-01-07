@@ -1,23 +1,24 @@
 {
-  "name": "create-stylesheet",
-  "version": "0.2.2",
-  "description": "Cross-browser dynamic stylesheet creation",
-  "author": "Andrew Wakeling <andrew.wakeling@gmail.com>",
-  "repository": "git://github.com/andrewwakeling/create-stylesheet",
-  "devDependencies": {
-    "grunt": "~0.4.2",
-    "grunt-umd": "~1.3.0",
-    "grunt-contrib-clean": "~0.5.0",
-    "grunt-contrib-uglify": "~0.2.7",
-    "grunt-banner": "~0.2.0",
-    "grunt-contrib-copy": "~0.4.1"
-  },
-  "keywords": [
-    "dynamic css",
-    "dynamic style",
-    "style",
-    "styles",
-    "stylesheet",
-    "createStyleSheet"
-  ]
+    "name": "create-stylesheet",
+    "version": "0.2.3",
+    "description": "Cross-browser dynamic stylesheet creation",
+    "author": "Andrew Wakeling <andrew.wakeling@gmail.com>",
+    "repository": "git://github.com/andrewwakeling/create-stylesheet",
+    "devDependencies": {
+        "grunt": "~0.4.2",
+        "grunt-umd": "~1.3.0",
+        "grunt-contrib-clean": "~0.5.0",
+        "grunt-contrib-uglify": "~0.2.7",
+        "grunt-banner": "~0.2.0",
+        "grunt-contrib-copy": "~0.4.1",
+        "grunt-contrib-jshint": "~0.8.0"
+    },
+    "keywords": [
+        "dynamic css",
+        "dynamic style",
+        "style",
+        "styles",
+        "stylesheet",
+        "createStyleSheet"
+    ]
 }

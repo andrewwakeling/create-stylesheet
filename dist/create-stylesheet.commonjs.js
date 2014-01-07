@@ -1,4 +1,4 @@
-// create-stylesheet 0.2.2
+// create-stylesheet 0.2.3
 // Andrew Wakeling <andrew.wakeling@gmail.com>
 // create-stylesheet may be freely distributed under the MIT license.
 
@@ -42,9 +42,10 @@ function insertEmptyStyleBefore(node, callback) {
     }
     if (style.styleSheet && style.styleSheet.disabled) {
         head.removeChild(style);
-        return callback('Unable to add any more stylesheets because you have exceeded the maximum allowable stylesheets. See KB262161 for more information.');
+        callback('Unable to add any more stylesheets because you have exceeded the maximum allowable stylesheets. See KB262161 for more information.');
+    } else {
+        callback(null, style);
     }
-    callback(null, style);
 }
 
 /**
@@ -63,11 +64,11 @@ function setStyleCss(style, css, callback) {
         } else {
             style.appendChild(document.createTextNode(css));
         }
-        return callback(null);
     } catch (e) {
         // Ideally this should never happen but there are still obscure cases with IE where attempting to set cssText can fail.
-        callback(e);
+        return callback(e);
     }
+    return callback(null);
 }
 
 /**

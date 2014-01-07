@@ -3,12 +3,19 @@
 module.exports = function (grunt) {
     var lines = [];
     lines.push('// <%= pkg.name %> <%= pkg.version %>');
-    lines.push('// <%= pkg.author %>')
+    lines.push('// <%= pkg.author %>');
     lines.push('// <%= pkg.name %> may be freely distributed under the MIT license.');
     grunt.initConfig({
         banner:  lines.join('\n'),
         pkg: grunt.file.readJSON('package.json'),
         clean: ['dist'],
+        jshint: {
+            js: {
+                files: {
+                    src: ['create-stylesheet.js']
+                }
+            }
+        },
         umd: {
             umd: {
                 src: 'create-stylesheet.js',
@@ -69,6 +76,7 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-banner');
+    grunt.loadNpmTasks('grunt-contrib-jshint');
 
-    grunt.registerTask('default', ['clean', 'umd:umd', 'umd:commonjs', 'uglify:umd', 'uglify:commonjs', 'copy:unwrapped', 'usebanner:dist']);
+    grunt.registerTask('default', ['clean', 'jshint', 'umd:umd', 'umd:commonjs', 'uglify:umd', 'uglify:commonjs', 'copy:unwrapped', 'usebanner:dist']);
 };
